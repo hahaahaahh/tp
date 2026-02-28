@@ -18,21 +18,21 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 * Role: Member
 
-### Jane Doe
+### Yida Wang
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/wang-yida.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](https://github.com/WANG-YIDA)]
+[[portfolio](team/wang-yida.md)]
 
-* Role: Team Lead
-* Responsibilities: UI
+* Role: Team Member
+* Responsibilities: TBC
 
 ### Johnny Doe
 
 <img src="images/johndoe.png" width="200px">
 
-[[github](http://github.com/johndoe)] [[portfolio](team/johndoe.md)]
+[[github](http://github.com/johndoe)] [[portfolio](team/wang-yida)]
 
 * Role: Developer
 * Responsibilities: Data
@@ -51,7 +51,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 <img src="images/johndoe.png" width="200px">
 
 [[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[portfolio](team/wang-yida)]
 
 * Role: Developer
 * Responsibilities: UI
