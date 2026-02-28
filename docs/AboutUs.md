@@ -19,15 +19,14 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 * Role: Project Advisor
 
-### Jane Doe
+### Yueqian Hong
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/hahaahaahh.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/hahaahaahh)]
+[[portfolio](team/hahaahaahh.md)]
 
-* Role: Team Lead
-* Responsibilities: UI
+* Role: Team Member
 
 ### Johnny Doe
 
