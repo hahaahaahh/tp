@@ -9,15 +9,14 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ## Project team
 
-### John Doe
+### Chia Ping Yi Alston
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/achiack.png" width="200px">
 
-[[homepage](http://www.comp.nus.edu.sg/~damithch)]
-[[github](https://github.com/johndoe)]
-[[portfolio](team/wang-yida)]
+[[github](https://github.com/Achiack)]
+[[portfolio](team/achiack.md)]
 
-* Role: Project Advisor
+* Role: Member
 
 ### Yida Wang
 
@@ -38,15 +37,14 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 * Role: Developer
 * Responsibilities: Data
 
-### Jean Doe
+### Celeste Phua
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/select-e.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/wang-yida)]
+[[github](http://github.com/select-e)]
+[[portfolio](team/select-e.md)]
 
-* Role: Developer
-* Responsibilities: Dev Ops + Threading
+* Role: Team Member
 
 ### James Doe
 
