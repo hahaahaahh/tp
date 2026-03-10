@@ -1,16 +1,14 @@
 package seedu.address.model.order;
 
-import org.junit.jupiter.api.Tag;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
+import java.time.LocalDate;
+
 import org.junit.jupiter.api.Test;
+
 import seedu.address.model.ModelManager;
 import seedu.address.model.person.Person;
 import seedu.address.testutil.PersonBuilder;
-
-import java.time.LocalDate;
-import java.util.HashSet;
-import java.util.Set;
-
-import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class UniqueOrderListTest {
     @Test
