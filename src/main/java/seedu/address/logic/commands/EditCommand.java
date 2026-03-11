@@ -9,6 +9,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_REGION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_UNIT;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
@@ -27,6 +28,7 @@ import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
+import seedu.address.model.person.Region;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -101,9 +103,11 @@ public class EditCommand extends Command {
         Phone updatedPhone = editPersonDescriptor.getPhone().orElse(personToEdit.getPhone());
         Email updatedEmail = editPersonDescriptor.getEmail().orElse(personToEdit.getEmail());
         Address updatedAddress = editPersonDescriptor.getAddress().orElse(personToEdit.getAddress());
+        Region updatedRegion = editPersonDescriptor.getRegion().orElse(personToEdit.getRegion());
+        ArrayList<String> updatedOrders = editPersonDescriptor.getOrders().orElse(personToEdit.getOrders());
         Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
 
-        return new Person(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedTags);
+        return new Person(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedRegion, updatedOrders, updatedTags);
     }
 
     @Override
@@ -139,7 +143,9 @@ public class EditCommand extends Command {
         private Phone phone;
         private Email email;
         private Address address;
+        private Region region;
         private Set<Tag> tags;
+        private ArrayList<String> order;
 
         public EditPersonDescriptor() {}
 
@@ -151,8 +157,10 @@ public class EditCommand extends Command {
             setName(toCopy.name);
             setPhone(toCopy.phone);
             setEmail(toCopy.email);
+            setRegion(toCopy.region);
             setAddress(toCopy.address);
             setTags(toCopy.tags);
+            setOrder(toCopy.order);
         }
 
         /**
@@ -192,6 +200,22 @@ public class EditCommand extends Command {
 
         public Optional<Address> getAddress() {
             return Optional.ofNullable(address);
+        }
+
+        public void setRegion(Region region) {
+            this.region = region;
+        }
+
+        public Optional<Region> getRegion() {
+            return Optional.ofNullable(region);
+        }
+
+        public void setOrder(ArrayList<String> order) {
+            this.order = order;
+        }
+
+        public Optional<ArrayList<String>> getOrders() {
+            return Optional.ofNullable(order);
         }
 
         /**
