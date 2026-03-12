@@ -38,7 +38,7 @@ public class PersonUtil {
         sb.append(PREFIX_EMAIL + person.getEmail().value + " ");
         sb.append(PREFIX_ADDRESS + person.getAddress().getPostalCode() + " ");
         sb.append(PREFIX_UNITNO + person.getAddress().getUnit() + " ");
-        sb.append(PREFIX_REGION + person.getRegion().value.toString() + " ");
+        sb.append(PREFIX_REGION + person.getRegion().getValue().toString() + " ");
         sb.append(PREFIX_ORDERS + person.getLastOrder() + " ");
         person.getTags().stream().forEach(
             s -> sb.append(PREFIX_TAG + s.tagName + " ")
@@ -61,7 +61,7 @@ public class PersonUtil {
                 sb.append(PREFIX_UNITNO).append(address.getUnit()).append(" ");
             }
         });
-        descriptor.getRegion().ifPresent(region -> sb.append(PREFIX_REGION).append(region.value).append(" "));
+        descriptor.getRegion().ifPresent(region -> sb.append(PREFIX_REGION).append(region.getValue()).append(" "));
         if (descriptor.getTags().isPresent()) {
             Set<Tag> tags = descriptor.getTags().get();
             if (tags.isEmpty()) {
