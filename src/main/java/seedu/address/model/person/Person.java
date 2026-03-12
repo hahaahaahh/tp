@@ -135,6 +135,7 @@ public class Person {
                 .add("email", email)
                 .add("address", address)
                 .add("region", region)
+                .add("orders", orders)
                 .add("tags", tags)
                 .toString();
     }

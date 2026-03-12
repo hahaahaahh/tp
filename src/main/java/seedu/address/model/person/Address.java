@@ -30,7 +30,7 @@ public class Address {
     public Address(String address) {
         requireNonNull(address);
         checkArgument(isValidAddress(address), MESSAGE_CONSTRAINTS);
-        value = new Pair<>(address, null);
+        value = new Pair<>(address, "");
     }
 
     public Address(String address, String unit) {
@@ -83,7 +83,9 @@ public class Address {
         }
 
         Address otherAddress = (Address) other;
-        return value.getKey().equals(otherAddress.getPostalCode()) && value.getValue().equals(otherAddress.getUnit());
+        boolean samePostalCode = getPostalCode().equals(otherAddress.getPostalCode());
+        boolean sameUnitNo = getUnit().equals(otherAddress.getUnit());
+        return samePostalCode && sameUnitNo;
     }
 
     @Override
