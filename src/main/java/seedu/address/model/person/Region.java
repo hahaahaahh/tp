@@ -8,12 +8,26 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 public class Region {
     public static final String MESSAGE_CONSTRAINTS = "Regions should be one of: N, NE, W, E, C. They should not be blank.";
     public static final String VALIDATION_REGEX = "^(N|NE|W|E|C)$";
-    public String value;
+    public RegionType value;
+
+    public enum RegionType {
+        N("North"),
+        NE("North East"),
+        W("West"),
+        E("East"),
+        C("Central");
+
+        public final String label;
+
+        private RegionType(String label) {
+            this.label = label;
+        }
+    }
 
     public Region(String region) {
         requireNonNull(region);
         checkArgument(isValidRegion(region), MESSAGE_CONSTRAINTS);
-        this.value = region;
+        this.value = RegionType.valueOf(region);
     }
 
     /**
@@ -23,10 +37,16 @@ public class Region {
         return test.matches(VALIDATION_REGEX);
     }
 
+    /**
+     * Returns the user-facing label of the Region.
+     */
+    public String toLabel() {
+        return value.label;
+    }
 
     @Override
     public String toString() {
-        return value;
+        return value.toString();
     }
 
     @Override

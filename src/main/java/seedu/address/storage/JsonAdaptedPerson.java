@@ -63,7 +63,7 @@ class JsonAdaptedPerson {
         phone = source.getPhone().value;
         email = Optional.ofNullable(source.getEmail()).map(e -> e.value).orElse("");
         address = source.getAddress().toString();
-        region = source.getRegion().value;
+        region = source.getRegion().toString();
         orders.addAll(source.getOrders());
         tags.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
