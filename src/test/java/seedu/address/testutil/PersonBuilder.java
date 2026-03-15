@@ -2,7 +2,6 @@ package seedu.address.testutil;
 
 import java.util.ArrayList;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 import seedu.address.model.person.Address;
@@ -22,8 +21,10 @@ public class PersonBuilder {
     public static final String DEFAULT_NAME = "Amy Bee";
     public static final String DEFAULT_PHONE = "85355255";
     public static final String DEFAULT_EMAIL = "amy@gmail.com";
-    public static final String DEFAULT_ADDRESS = "123, Jurong West Ave 6, #08-111";
-    public static final String DEFAULT_REGION = "C";
+    public static final String DEFAULT_ADDRESS = "123456";
+    public static final String DEFAULT_REGION = "N";
+    public static final String DEFAULT_ORDER = "nasi lemak";
+    public static final String DEFAULT_UNITNO = "#01-01";
 
     private Name name;
     private Phone phone;
@@ -40,9 +41,10 @@ public class PersonBuilder {
         name = new Name(DEFAULT_NAME);
         phone = new Phone(DEFAULT_PHONE);
         email = new Email(DEFAULT_EMAIL);
-        address = new Address(DEFAULT_ADDRESS);
+        address = new Address(DEFAULT_ADDRESS, DEFAULT_UNITNO);
         region = new Region(DEFAULT_REGION);
         orders = new ArrayList<>();
+        orders.add(DEFAULT_ORDER);
         tags = new HashSet<>();
     }
 
@@ -84,6 +86,14 @@ public class PersonBuilder {
     }
 
     /**
+     * Sets the {@code Address} of the {@code Person} that we are building.
+     */
+    public PersonBuilder withAddress(String address, String unit) {
+        this.address = new Address(address, unit);
+        return this;
+    }
+
+    /**
      * Sets the {@code Phone} of the {@code Person} that we are building.
      */
     public PersonBuilder withPhone(String phone) {
@@ -111,7 +121,10 @@ public class PersonBuilder {
      * Sets the orders of the {@code Person} that we are building.
      */
     public PersonBuilder withOrders(String... orders) {
-        this.orders.addAll(List.of(orders));
+        this.orders = new ArrayList<>();
+        for (String order : orders) {
+            this.orders.add(order);
+        }
         return this;
     }
 

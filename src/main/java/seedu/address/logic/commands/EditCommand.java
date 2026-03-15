@@ -3,10 +3,11 @@ package seedu.address.logic.commands;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_ORDER;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_ORDERS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_REGION;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_UNIT;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_UNITNO;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
 import java.util.ArrayList;
@@ -45,12 +46,13 @@ public class EditCommand extends Command {
             + "[" + PREFIX_NAME + "NAME] "
             + "[" + PREFIX_PHONE + "PHONE_NUMBER] "
             + "[" + PREFIX_ADDRESS + "ADDRESS] "
-            + "[" + PREFIX_UNIT + "UNIT] "
+            + "[" + PREFIX_UNITNO + "UNIT] "
             + "[" + PREFIX_REGION + "REGION]\n"
-            + "[" + PREFIX_ORDER + "ORDER]...\n"
+            + "[" + PREFIX_ORDERS + "ORDER]...\n"
+            + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_PHONE + "91234567 "
-            + PREFIX_ORDER + "4 9 10";
+            + PREFIX_ORDERS + "chicken rice";
 
     public static final String MESSAGE_EDIT_PERSON_SUCCESS = "Contact edited successfully.\n%1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
@@ -107,7 +109,8 @@ public class EditCommand extends Command {
         ArrayList<String> updatedOrders = editPersonDescriptor.getOrders().orElse(personToEdit.getOrders());
         Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
 
-        return new Person(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedRegion, updatedOrders, updatedTags);
+        return new Person(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedRegion,
+                updatedOrders, updatedTags);
     }
 
     @Override
@@ -167,7 +170,7 @@ public class EditCommand extends Command {
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(name, phone, email, address, tags);
+            return CollectionUtil.isAnyNonNull(name, phone, email, address, region, tags);
         }
 
         public void setName(Name name) {
@@ -251,6 +254,7 @@ public class EditCommand extends Command {
                     && Objects.equals(phone, otherEditPersonDescriptor.phone)
                     && Objects.equals(email, otherEditPersonDescriptor.email)
                     && Objects.equals(address, otherEditPersonDescriptor.address)
+                    && Objects.equals(region, otherEditPersonDescriptor.region)
                     && Objects.equals(tags, otherEditPersonDescriptor.tags);
         }
 
@@ -261,6 +265,8 @@ public class EditCommand extends Command {
                     .add("phone", phone)
                     .add("email", email)
                     .add("address", address)
+                    .add("region", region)
+                    .add("orders", order)
                     .add("tags", tags)
                     .toString();
         }

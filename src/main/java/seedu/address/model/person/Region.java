@@ -8,9 +8,28 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
  * Guarantees: immutable; is valid as declared in {@link #isValidRegion(String)}
  */
 public class Region {
-    public static final String MESSAGE_CONSTRAINTS = "Regions should be one of: N, NE, W, E, C. They should not be blank.";
+    public static final String MESSAGE_CONSTRAINTS =
+            "Regions should be one of: N, NE, W, E, C. They should not be blank.";
     public static final String VALIDATION_REGEX = "^(N|NE|W|E|C)$";
-    public String value;
+
+    /**
+     * An enumeration for all possible region types.
+     */
+    public enum RegionType {
+        N("North"),
+        NE("North East"),
+        W("West"),
+        E("East"),
+        C("Central");
+
+        public final String label;
+
+        RegionType(String label) {
+            this.label = label;
+        }
+    }
+
+    private final RegionType value;
 
     /**
      * Constructs a {@code Region}.
@@ -20,7 +39,14 @@ public class Region {
     public Region(String region) {
         requireNonNull(region);
         checkArgument(isValidRegion(region), MESSAGE_CONSTRAINTS);
-        this.value = region;
+        this.value = RegionType.valueOf(region);
+    }
+
+    /**
+     * Returns the value of the region.
+     */
+    public RegionType getValue() {
+        return value;
     }
 
     /**
@@ -30,9 +56,16 @@ public class Region {
         return test.matches(VALIDATION_REGEX);
     }
 
+    /**
+     * Returns the user-facing label of the Region.
+     */
+    public String toLabel() {
+        return getValue().label;
+    }
+
     @Override
     public String toString() {
-        return value;
+        return getValue().toString();
     }
 
     @Override
@@ -47,11 +80,12 @@ public class Region {
         }
 
         Region otherRegion = (Region) other;
-        return value.equals(otherRegion.value);
+        return getValue().equals(otherRegion.getValue());
     }
 
     @Override
     public int hashCode() {
-        return value.hashCode();
+        return getValue().hashCode();
     }
+
 }

@@ -3,6 +3,7 @@ package seedu.address.storage;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -38,15 +39,17 @@ class JsonAdaptedPerson {
      */
     @JsonCreator
     public JsonAdaptedPerson(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
-            @JsonProperty("email") String email, @JsonProperty("address") String address,
-            @JsonProperty("region") String region, @JsonProperty("orders") List<String> orders,
-            @JsonProperty("tags") List<JsonAdaptedTag> tags) {
+                             @JsonProperty("email") String email, @JsonProperty("address") String address,
+                             @JsonProperty("region") String region, @JsonProperty("orders") List<String> orders,
+                             @JsonProperty("tags") List<JsonAdaptedTag> tags) {
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.address = address;
         this.region = region;
-        this.orders.addAll(orders);
+        if (orders != null) {
+            this.orders.addAll(orders);
+        }
         if (tags != null) {
             this.tags.addAll(tags);
         }
@@ -58,9 +61,9 @@ class JsonAdaptedPerson {
     public JsonAdaptedPerson(Person source) {
         name = source.getName().fullName;
         phone = source.getPhone().value;
-        email = source.getEmail().value;
-        address = source.getAddress().value;
-        region = source.getRegion().value;
+        email = Optional.ofNullable(source.getEmail()).map(e -> e.value).orElse("");
+        address = source.getAddress().toString();
+        region = source.getRegion().toString();
         orders.addAll(source.getOrders());
         tags.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
@@ -103,15 +106,30 @@ class JsonAdaptedPerson {
         final Email modelEmail = new Email(email);
 
         if (address == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Address.class.getSimpleName()));
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    Address.class.getSimpleName()));
         }
-        if (!Address.isValidAddress(address)) {
-            throw new IllegalValueException(Address.MESSAGE_CONSTRAINTS);
+        final Address modelAddress;
+        if (address.contains(", ")) {
+            String postalCode = address.substring(0, 6);
+            String unit = address.substring(8);
+            if (!Address.isValidAddress(postalCode)) {
+                throw new IllegalValueException(Address.MESSAGE_CONSTRAINTS);
+            }
+            if (!Address.isValidUnit(unit)) {
+                throw new IllegalValueException(Address.MESSAGE_CONSTRAINTS_UNIT);
+            }
+            modelAddress = new Address(postalCode, unit);
+        } else {
+            if (!Address.isValidAddress(address)) {
+                throw new IllegalValueException(Address.MESSAGE_CONSTRAINTS);
+            }
+            modelAddress = new Address(address);
         }
-        final Address modelAddress = new Address(address);
 
         if (region == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Address.class.getSimpleName()));
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    Region.class.getSimpleName()));
         }
         if (!Region.isValidRegion(region)) {
             throw new IllegalValueException(Region.MESSAGE_CONSTRAINTS);
