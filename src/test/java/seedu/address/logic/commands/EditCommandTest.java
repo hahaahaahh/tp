@@ -184,7 +184,7 @@ public class EditCommandTest {
     @Test
     public void mutabilityFlags_returnsTrue() {
         EditCommand command = new EditCommand(INDEX_FIRST_PERSON, new EditPersonDescriptor());
-        assertTrue(command.isMutating());
+        assertTrue(command.shouldRecordInHistory());
         assertTrue(command.mutatesModel());
     }
 

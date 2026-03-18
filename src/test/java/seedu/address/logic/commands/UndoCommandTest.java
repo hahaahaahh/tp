@@ -200,7 +200,7 @@ public class UndoCommandTest {
     @Test
     public void mutabilityFlags_mutatesModelWithoutHistoryCommit() {
         UndoCommand undoCommand = new UndoCommand();
-        assertFalse(undoCommand.isMutating());
+        assertFalse(undoCommand.shouldRecordInHistory());
         assertTrue(undoCommand.mutatesModel());
     }
 }

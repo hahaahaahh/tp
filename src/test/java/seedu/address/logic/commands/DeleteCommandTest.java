@@ -112,7 +112,7 @@ public class DeleteCommandTest {
     @Test
     public void mutabilityFlags_returnsTrue() {
         DeleteCommand deleteCommand = new DeleteCommand(INDEX_FIRST_PERSON);
-        assertTrue(deleteCommand.isMutating());
+        assertTrue(deleteCommand.shouldRecordInHistory());
         assertTrue(deleteCommand.mutatesModel());
     }
 

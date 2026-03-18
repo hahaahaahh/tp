@@ -22,7 +22,7 @@ public class ClearCommand extends Command {
     }
 
     @Override
-    public boolean isMutating() {
+    public boolean shouldRecordInHistory() {
         return true;
     }
 

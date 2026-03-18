@@ -88,7 +88,7 @@ public class AddCommandTest {
     @Test
     public void mutabilityFlags_returnsTrue() {
         AddCommand addCommand = new AddCommand(new PersonBuilder().build());
-        assertTrue(addCommand.isMutating());
+        assertTrue(addCommand.shouldRecordInHistory());
         assertTrue(addCommand.mutatesModel());
     }
 

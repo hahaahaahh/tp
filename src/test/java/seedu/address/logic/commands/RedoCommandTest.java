@@ -221,7 +221,7 @@ public class RedoCommandTest {
     @Test
     public void mutabilityFlags_mutatesModelWithoutHistoryCommit() {
         RedoCommand redoCommand = new RedoCommand();
-        assertFalse(redoCommand.isMutating());
+        assertFalse(redoCommand.shouldRecordInHistory());
         assertTrue(redoCommand.mutatesModel());
     }
 }

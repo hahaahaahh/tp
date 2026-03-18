@@ -21,14 +21,14 @@ public abstract class Command {
      * Returns true if this command makes a change that should be recorded in the undo/redo history.
      * By default commands do not create history entries; mutating commands should override this.
      */
-    public boolean isMutating() {
+    public boolean shouldRecordInHistory() {
         return false;
     }
 
     /**
      * Returns true if this command mutates the model (i.e. changes the address book) and therefore
      * requires the data to be saved to storage. For example, undo/redo mutate the model but should
-     * not create a new history commit — they should override this to true while keeping isMutating()
+     * not create a new history commit — they should override this to true while keeping shouldRecordInHistory()
      * false.
      */
     public boolean mutatesModel() {

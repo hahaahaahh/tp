@@ -72,7 +72,7 @@ public class CommandResultTest {
                 return new CommandResult("noop");
             }
         };
-        assertFalse(nonMutating.isMutating());
+        assertFalse(nonMutating.shouldRecordInHistory());
         assertFalse(nonMutating.mutatesModel());
     }
 
@@ -85,7 +85,7 @@ public class CommandResultTest {
             }
 
             @Override
-            public boolean isMutating() {
+            public boolean shouldRecordInHistory() {
                 return true;
             }
 
@@ -94,7 +94,7 @@ public class CommandResultTest {
                 return true;
             }
         };
-        assertTrue(mutating.isMutating());
+        assertTrue(mutating.shouldRecordInHistory());
         assertTrue(mutating.mutatesModel());
     }
 
@@ -111,7 +111,7 @@ public class CommandResultTest {
                 return true;
             }
         };
-        assertFalse(storageOnly.isMutating());
+        assertFalse(storageOnly.shouldRecordInHistory());
         assertTrue(storageOnly.mutatesModel());
     }
 }

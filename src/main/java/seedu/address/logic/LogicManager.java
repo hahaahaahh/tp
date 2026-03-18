@@ -49,7 +49,7 @@ public class LogicManager implements Logic {
         CommandResult commandResult;
         Command command = addressBookParser.parseCommand(commandText);
         commandResult = command.execute(model);
-        if (command.isMutating()) {
+        if (command.shouldRecordInHistory()) {
             model.commitAddressBook();
         }
 

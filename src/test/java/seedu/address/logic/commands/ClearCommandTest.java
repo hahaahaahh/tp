@@ -33,7 +33,7 @@ public class ClearCommandTest {
     @Test
     public void mutabilityFlags_returnsTrue() {
         ClearCommand clearCommand = new ClearCommand();
-        assertTrue(clearCommand.isMutating());
+        assertTrue(clearCommand.shouldRecordInHistory());
         assertTrue(clearCommand.mutatesModel());
     }
 
